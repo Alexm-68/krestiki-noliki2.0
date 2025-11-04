@@ -44,8 +44,20 @@ def on_click(row, col):
 
     if check_winner():
         messagebox.showinfo("Игра окончена", f"Игрок {current_player} победил!")
+        reset_board()
+        return
+    if is_draw():
+        messagebox.showinfo("Игра окончена", "Ничья!")
+        reset_board()
+        return
 
     current_player = "0" if current_player == "X" else "X"
+
+
+def is_draw():
+    # Если все кнопки заполнены и никто не победил
+    return all(btn['text'] != "" for row_btn in buttons for btn in row_btn)
+
 
 
 def check_winner():
