@@ -28,12 +28,6 @@ def reset_board():
 reset_button = tk.Button(window, text="Сброс", font=("Arial", 14), command=reset_board)
 reset_button.grid(row=3, columnspan=3, sticky="we")
 
-# •	Изменение цвета текста на кнопках при ходе (чтобы X был красным, 0 — синим):
-if current_player == "X":
-    buttons[i][j].config(fg="red")
-else:
-    buttons[row][col].config(fg="blue")
-
 
 def on_click(row, col):
     global current_player
@@ -42,6 +36,11 @@ def on_click(row, col):
         return
 
     buttons[row][col]['text'] = current_player
+    # Изменение цвета текста на кнопках при ходе (чтобы X был красным, 0 — синим):
+    if current_player == "X":
+        buttons[row][col].config(fg="red")
+    else:
+        buttons[row][col].config(fg="blue")
 
     if check_winner():
         messagebox.showinfo("Игра окончена", f"Игрок {current_player} победил!")
